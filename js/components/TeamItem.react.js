@@ -6,8 +6,8 @@ var TeamItem = React.createClass({
    return (
       <div className="team-item">
       </div>
-  	);
-  };
+  	)
+  }
 
 });
 module.exports = TeamItem;
