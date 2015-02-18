@@ -3,10 +3,11 @@ var React = require('react');
 var TeamItem = React.createClass({
 
   render: function() {
-    return (
+   return (
       <div className="team-item">
       </div>
-    );
+  	);
   };
 
 });
+module.exports = TeamItem;

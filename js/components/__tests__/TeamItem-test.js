@@ -10,8 +10,7 @@ describe('Individual team item', function() {
     var TestUtils = React.addons.TestUtils;
 
     var teamItem = TestUtils.renderIntoDocument(
-      <TeamItem />
-    );
+         );
 
     expect(teamItem.getDOMNode().className).toEqual('team-item');
   });
