@@ -14,7 +14,7 @@ describe('List of users', function() {
     );
 
     var numUsers = TestUtils.scryRenderedDOMComponentsWithClass( userList, 'user-item' ).length;
-
     expect( numUsers ).toEqual( 3 );
+
   });
 });

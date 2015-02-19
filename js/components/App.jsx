@@ -14,8 +14,10 @@
 
 // var Footer = require('./Footer.jsx');
 // var Header = require('./Header.jsx');
-var UserList = require('./UserList.jsx');
+var TeamList = require('./TeamList.jsx');
 var React = require('react');
+var common = require('../common');
+var $ = require('jquery');
 // var TodoStore = require('../stores/TodoStore');
 
 /**
@@ -30,13 +32,24 @@ var React = require('react');
 
 var App = React.createClass({
 
-  // getInitialState: function() {
-  //   return getTodoState();
-  // },
+  getInitialState: function() {
+    // return getTodoState();
+    return {
+      teams: []
+    }
+  },
 
-  // componentDidMount: function() {
-  //   TodoStore.addChangeListener(this._onChange);
-  // },
+  componentDidMount: function() {
+    // TodoStore.addChangeListener(this._onChange);
+    var getTeams = common.getAllTeams();
+    var getUsers = common.getAllUsers();
+    $.when( getTeams, getUsers ).then(function( teams, users ) {
+      this.setState({
+        teams: teams[0],
+        users: users[0]
+      });
+    }.bind( this ));
+  },
 
   // componentWillUnmount: function() {
   //   TodoStore.removeChangeListener(this._onChange);
@@ -48,7 +61,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-        <UserList />
+        <TeamList teams={this.state.teams} users={this.state.users} />
       </div>
     );
   },

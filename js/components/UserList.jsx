@@ -5,20 +5,16 @@ var UserList = React.createClass({
 
   render: function() {
 
-    var users = [
-          'Mikko Myllyla',
-          'Heiki Huvonen',
-          'Jukka Peltomaki'
-        ];
+    var users = this.props.users;
 
-    users = users.map( function( name ) {
-      return <UserItem name={name} />;
+    users = users.map( function( user ) {
+      return <UserItem name={user.data.username} key={user.name} />;
     });
 
     return (
-      <div className="user-list">
-        { users }
-      </div>
+      <ul className="user-list">
+        {users}
+      </ul>
     )
 
   }
