@@ -9,9 +9,9 @@
 
 var React = require('react');
 
-var TodoApp = require('./components/TodoApp.react');
+var App = require('./components/App.jsx');
 
 React.render(
-  <TodoApp />,
-  document.getElementById('todoapp')
+  <App />,
+  document.getElementById('app')
 );
