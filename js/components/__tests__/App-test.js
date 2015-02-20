@@ -11,6 +11,6 @@ describe('Get all teams method', function () {
 
         common.getAllTeams();
 
-        expect($.get).toBeCalled();
+        expect($.get).toBeCalledWith('/dummy-data/teams.json');
     });
 });
