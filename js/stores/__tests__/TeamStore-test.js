@@ -10,14 +10,14 @@
  */
 
 jest.dontMock('../../constants/TodoConstants');
-jest.dontMock('../TodoStore');
+jest.dontMock('../TeamStore');
 jest.dontMock('object-assign');
 
-describe('TodoStore', function() {
+describe('TeamStore', function() {
 
   var TodoConstants = require('../../constants/TodoConstants');
   var AppDispatcher;
-  var TodoStore;
+  var TeamStore;
   var callback;
 
   // mock actions
@@ -32,7 +32,7 @@ describe('TodoStore', function() {
 
   beforeEach(function() {
     AppDispatcher = require('../../dispatcher/AppDispatcher');
-    TodoStore = require('../TodoStore');
+    TeamStore = require('../TeamStore');
     callback = AppDispatcher.register.mock.calls[0][0];
   });
 
@@ -41,13 +41,13 @@ describe('TodoStore', function() {
   });
 
   it('should initialize with no to-do items', function() {
-    var all = TodoStore.getAll();
+    var all = TeamStore.getAll();
     expect(all).toEqual({});
   });
 
   it('creates a to-do item', function() {
     callback(actionTodoCreate);
-    var all = TodoStore.getAll();
+    var all = TeamStore.getAll();
     var keys = Object.keys(all);
     expect(keys.length).toBe(1);
     expect(all[keys[0]].text).toEqual('foo');
@@ -55,7 +55,7 @@ describe('TodoStore', function() {
 
   it('destroys a to-do item', function() {
     callback(actionTodoCreate);
-    var all = TodoStore.getAll();
+    var all = TeamStore.getAll();
     var keys = Object.keys(all);
     expect(keys.length).toBe(1);
     actionTodoDestroy.id = keys[0];
@@ -68,23 +68,23 @@ describe('TodoStore', function() {
     for (; i < 3; i++) {
       callback(actionTodoCreate);
     }
-    expect(Object.keys(TodoStore.getAll()).length).toBe(3);
-    expect(TodoStore.areAllComplete()).toBe(false);
+    expect(Object.keys(TeamStore.getAll()).length).toBe(3);
+    expect(TeamStore.areAllComplete()).toBe(false);
 
-    var all = TodoStore.getAll();
+    var all = TeamStore.getAll();
     for (key in all) {
       callback({
         actionType: TodoConstants.TODO_COMPLETE,
         id: key
       });
     }
-    expect(TodoStore.areAllComplete()).toBe(true);
+    expect(TeamStore.areAllComplete()).toBe(true);
 
     callback({
       actionType: TodoConstants.TODO_UNDO_COMPLETE,
       id: key
     });
-    expect(TodoStore.areAllComplete()).toBe(false);
+    expect(TeamStore.areAllComplete()).toBe(false);
   });
 
 });
