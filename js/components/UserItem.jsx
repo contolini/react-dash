@@ -4,7 +4,7 @@ var UserItem = React.createClass({
 
   render: function() {
     return (
-      <li className="user-item">{ this.props.name }</li>
+      <li className="user-item">{this.props.name}</li>
     )
   }
 

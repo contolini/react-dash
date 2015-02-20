@@ -43,7 +43,8 @@ var App = React.createClass({
     // TodoStore.addChangeListener(this._onChange);
     var getTeams = common.getAllTeams();
     var getUsers = common.getAllUsers();
-    $.when( getTeams, getUsers ).then(function( teams, users ) {
+    var p = $.when( getTeams, getUsers );
+    p.then(function( teams, users ) {
       this.setState({
         teams: teams[0],
         users: users[0]
@@ -59,6 +60,7 @@ var App = React.createClass({
    * @return {object}
    */
   render: function() {
+    // console.log(JSON.stringify(this.state.teams));
     return (
       <div>
         <TeamList teams={this.state.teams} users={this.state.users} />
